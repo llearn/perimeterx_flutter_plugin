@@ -5,8 +5,8 @@ import 'package:pigeon/pigeon.dart';
   PigeonOptions(
     dartOut: 'lib/src/pigeon/messages.pigeon.dart',
     kotlinOut:
-        'android/src/main/kotlin/com/arthurmonteiroo/perimeterx_flutter_plugin/messages/GeneratedAndroidPerimeterxFlutter.kt',
-    swiftOut: 'ios/Classes/GeneratedSwiftPerimeterxFlutter.swift',
+        'android/src/main/kotlin/com/arthurmonteiroo/perimeterx_flutter_plugin/messages/GeneratedAndroidPerimeterXFlutter.kt',
+    swiftOut: 'ios/Classes/GeneratedSwiftPerimeterXFlutter.swift',
     kotlinOptions: KotlinOptions(
       package: 'com.arthurmonteiroo.perimeterx_flutter_android.messages',
     ),
@@ -15,11 +15,12 @@ import 'package:pigeon/pigeon.dart';
 // #enddocregion config
 
 @HostApi()
-abstract class PerimeterxHostApi {
-  Map<String, String> getPerimeterxHeaders();
+abstract class PerimeterXHostApi {
+  Map<String, String> getHeaders();
+
   @async
-  String handlePerimeterxResponse({
+  String handleResponse({
     required String response,
-    String? url,
+    required String url,
   });
 }

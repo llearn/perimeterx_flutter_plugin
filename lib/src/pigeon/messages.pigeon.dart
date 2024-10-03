@@ -37,11 +37,11 @@ class _PigeonCodec extends StandardMessageCodec {
   }
 }
 
-class PerimeterxHostApi {
-  /// Constructor for [PerimeterxHostApi].  The [binaryMessenger] named argument is
+class PerimeterXHostApi {
+  /// Constructor for [PerimeterXHostApi].  The [binaryMessenger] named argument is
   /// available for dependency injection.  If it is left null, the default
   /// BinaryMessenger will be used which routes to the host platform.
-  PerimeterxHostApi({BinaryMessenger? binaryMessenger, String messageChannelSuffix = ''})
+  PerimeterXHostApi({BinaryMessenger? binaryMessenger, String messageChannelSuffix = ''})
       : pigeonVar_binaryMessenger = binaryMessenger,
         pigeonVar_messageChannelSuffix = messageChannelSuffix.isNotEmpty ? '.$messageChannelSuffix' : '';
   final BinaryMessenger? pigeonVar_binaryMessenger;
@@ -50,8 +50,8 @@ class PerimeterxHostApi {
 
   final String pigeonVar_messageChannelSuffix;
 
-  Future<Map<String, String>> getPerimeterxHeaders() async {
-    final String pigeonVar_channelName = 'dev.flutter.pigeon.perimeterx_flutter_plugin.PerimeterxHostApi.getPerimeterxHeaders$pigeonVar_messageChannelSuffix';
+  Future<Map<String, String>> getHeaders() async {
+    final String pigeonVar_channelName = 'dev.flutter.pigeon.perimeterx_flutter_plugin.PerimeterXHostApi.getHeaders$pigeonVar_messageChannelSuffix';
     final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
       pigeonVar_channelName,
       pigeonChannelCodec,
@@ -77,8 +77,8 @@ class PerimeterxHostApi {
     }
   }
 
-  Future<String> handlePerimeterxResponse({required String response, String? url}) async {
-    final String pigeonVar_channelName = 'dev.flutter.pigeon.perimeterx_flutter_plugin.PerimeterxHostApi.handlePerimeterxResponse$pigeonVar_messageChannelSuffix';
+  Future<String> handleResponse({required String response, required String url}) async {
+    final String pigeonVar_channelName = 'dev.flutter.pigeon.perimeterx_flutter_plugin.PerimeterXHostApi.handleResponse$pigeonVar_messageChannelSuffix';
     final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
       pigeonVar_channelName,
       pigeonChannelCodec,

@@ -64,59 +64,59 @@ private func nilOrValue<T>(_ value: Any?) -> T? {
   return value as! T?
 }
 
-private class GeneratedSwiftPerimeterxFlutterPigeonCodecReader: FlutterStandardReader {
+private class GeneratedSwiftPerimeterXFlutterPigeonCodecReader: FlutterStandardReader {
 }
 
-private class GeneratedSwiftPerimeterxFlutterPigeonCodecWriter: FlutterStandardWriter {
+private class GeneratedSwiftPerimeterXFlutterPigeonCodecWriter: FlutterStandardWriter {
 }
 
-private class GeneratedSwiftPerimeterxFlutterPigeonCodecReaderWriter: FlutterStandardReaderWriter {
+private class GeneratedSwiftPerimeterXFlutterPigeonCodecReaderWriter: FlutterStandardReaderWriter {
   override func reader(with data: Data) -> FlutterStandardReader {
-    return GeneratedSwiftPerimeterxFlutterPigeonCodecReader(data: data)
+    return GeneratedSwiftPerimeterXFlutterPigeonCodecReader(data: data)
   }
 
   override func writer(with data: NSMutableData) -> FlutterStandardWriter {
-    return GeneratedSwiftPerimeterxFlutterPigeonCodecWriter(data: data)
+    return GeneratedSwiftPerimeterXFlutterPigeonCodecWriter(data: data)
   }
 }
 
-class GeneratedSwiftPerimeterxFlutterPigeonCodec: FlutterStandardMessageCodec, @unchecked Sendable {
-  static let shared = GeneratedSwiftPerimeterxFlutterPigeonCodec(readerWriter: GeneratedSwiftPerimeterxFlutterPigeonCodecReaderWriter())
+class GeneratedSwiftPerimeterXFlutterPigeonCodec: FlutterStandardMessageCodec, @unchecked Sendable {
+  static let shared = GeneratedSwiftPerimeterXFlutterPigeonCodec(readerWriter: GeneratedSwiftPerimeterXFlutterPigeonCodecReaderWriter())
 }
 
 
 /// Generated protocol from Pigeon that represents a handler of messages from Flutter.
-protocol PerimeterxHostApi {
-  func getPerimeterxHeaders() throws -> [String: String]
-  func handlePerimeterxResponse(response: String, url: String?, completion: @escaping (Result<String, Error>) -> Void)
+protocol PerimeterXHostApi {
+  func getHeaders() throws -> [String: String]
+  func handleResponse(response: String, url: String, completion: @escaping (Result<String, Error>) -> Void)
 }
 
 /// Generated setup class from Pigeon to handle messages through the `binaryMessenger`.
-class PerimeterxHostApiSetup {
-  static var codec: FlutterStandardMessageCodec { GeneratedSwiftPerimeterxFlutterPigeonCodec.shared }
-  /// Sets up an instance of `PerimeterxHostApi` to handle messages through the `binaryMessenger`.
-  static func setUp(binaryMessenger: FlutterBinaryMessenger, api: PerimeterxHostApi?, messageChannelSuffix: String = "") {
+class PerimeterXHostApiSetup {
+  static var codec: FlutterStandardMessageCodec { GeneratedSwiftPerimeterXFlutterPigeonCodec.shared }
+  /// Sets up an instance of `PerimeterXHostApi` to handle messages through the `binaryMessenger`.
+  static func setUp(binaryMessenger: FlutterBinaryMessenger, api: PerimeterXHostApi?, messageChannelSuffix: String = "") {
     let channelSuffix = messageChannelSuffix.count > 0 ? ".\(messageChannelSuffix)" : ""
-    let getPerimeterxHeadersChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.perimeterx_flutter_plugin.PerimeterxHostApi.getPerimeterxHeaders\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
+    let getHeadersChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.perimeterx_flutter_plugin.PerimeterXHostApi.getHeaders\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
     if let api = api {
-      getPerimeterxHeadersChannel.setMessageHandler { _, reply in
+      getHeadersChannel.setMessageHandler { _, reply in
         do {
-          let result = try api.getPerimeterxHeaders()
+          let result = try api.getHeaders()
           reply(wrapResult(result))
         } catch {
           reply(wrapError(error))
         }
       }
     } else {
-      getPerimeterxHeadersChannel.setMessageHandler(nil)
+      getHeadersChannel.setMessageHandler(nil)
     }
-    let handlePerimeterxResponseChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.perimeterx_flutter_plugin.PerimeterxHostApi.handlePerimeterxResponse\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
+    let handleResponseChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.perimeterx_flutter_plugin.PerimeterXHostApi.handleResponse\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
     if let api = api {
-      handlePerimeterxResponseChannel.setMessageHandler { message, reply in
+      handleResponseChannel.setMessageHandler { message, reply in
         let args = message as! [Any?]
         let responseArg = args[0] as! String
-        let urlArg: String? = nilOrValue(args[1])
-        api.handlePerimeterxResponse(response: responseArg, url: urlArg) { result in
+        let urlArg = args[1] as! String
+        api.handleResponse(response: responseArg, url: urlArg) { result in
           switch result {
           case .success(let res):
             reply(wrapResult(res))
@@ -126,7 +126,7 @@ class PerimeterxHostApiSetup {
         }
       }
     } else {
-      handlePerimeterxResponseChannel.setMessageHandler(nil)
+      handleResponseChannel.setMessageHandler(nil)
     }
   }
 }

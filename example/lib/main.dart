@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'package:http/http.dart' as http;
 
-import 'package:flutter/services.dart';
 import 'package:perimeterx_flutter_plugin/perimeterx_flutter_plugin.dart';
 
 void main() {
@@ -18,39 +18,45 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   Map<String, String>? _pxHeaders;
   PerimeterxResult? _challengeResult;
-  final _perimeterxFlutterPlugin = PerimeterxFlutterPlugin.instance;
+  final _perimeterxFlutterPlugin = PerimeterXFlutter();
 
-  @override
-  void initState() {
-    super.initState();
-    // initPlatformState();
-  }
-
-  // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> getHeaders() async {
     try {
-      _pxHeaders = await _perimeterxFlutterPlugin.getPerimeterxHeaders();
+      _pxHeaders = await _perimeterxFlutterPlugin.getHeaders();
     } on Exception {
       _pxHeaders = null;
     }
 
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
-    setState(() {
-      // _platformVersion = platformVersion;
-    });
+    setState(() {});
   }
 
   Future<void> getChallenge() async {
     try {
-      // TODO: challenge example (https://edocs.humansecurity.com/docs/android-integration-with-flutter-v3)
-      // _challengeResult = _perimeterxFlutterPlugin.handlePerimeterxResponse();
+      final pxHeaders = await _perimeterxFlutterPlugin.getHeaders();
+      final url = Uri.https('sample-ios.pxchk.net', '/login');
+      final response = await http.get(url, headers: pxHeaders);
+      print(
+          'PERIMETERX_FLUTTER_PLUGIN_EXAMPLE: ${response.statusCode} ${response.body}');
+      if (response.statusCode == 403) {
+        _challengeResult = await _perimeterxFlutterPlugin.handleResponse(
+            response: response.body, url: url.toString());
+
+        switch (_challengeResult!) {
+          case PerimeterxResult.solved:
+            // retry your request
+            break;
+          case PerimeterxResult.cancelled:
+            // retry your request. The challenge will be presented again.
+            break;
+          case PerimeterxResult.failed:
+            // handle the error
+            break;
+        }
+      }
     } on Exception {
       _challengeResult = null;
     }
+    setState(() {});
   }
 
   @override
@@ -80,6 +86,15 @@ class _MyAppState extends State<MyApp> {
                   },
                   child: const Text('Get Perimeterx Headers'),
                 ),
+                const Divider(),
+                if (_challengeResult != null)
+                  Text(
+                    'Challenge result: ${_challengeResult!.name}',
+                    style: const TextStyle(
+                      fontSize: 12,
+                      color: Colors.red,
+                    ),
+                  ),
                 TextButton(
                   onPressed: () {
                     getChallenge();

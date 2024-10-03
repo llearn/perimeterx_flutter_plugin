@@ -43,7 +43,7 @@ class FlutterError (
   override val message: String? = null,
   val details: Any? = null
 ) : Throwable()
-private open class GeneratedAndroidPerimeterxFlutterPigeonCodec : StandardMessageCodec() {
+private open class GeneratedAndroidPerimeterXFlutterPigeonCodec : StandardMessageCodec() {
   override fun readValueOfType(type: Byte, buffer: ByteBuffer): Any? {
     return     super.readValueOfType(type, buffer)
   }
@@ -54,25 +54,25 @@ private open class GeneratedAndroidPerimeterxFlutterPigeonCodec : StandardMessag
 
 
 /** Generated interface from Pigeon that represents a handler of messages from Flutter. */
-interface PerimeterxHostApi {
-  fun getPerimeterxHeaders(): Map<String, String>
-  fun handlePerimeterxResponse(response: String, url: String?, callback: (Result<String>) -> Unit)
+interface PerimeterXHostApi {
+  fun getHeaders(): Map<String, String>
+  fun handleResponse(response: String, url: String, callback: (Result<String>) -> Unit)
 
   companion object {
-    /** The codec used by PerimeterxHostApi. */
+    /** The codec used by PerimeterXHostApi. */
     val codec: MessageCodec<Any?> by lazy {
-      GeneratedAndroidPerimeterxFlutterPigeonCodec()
+      GeneratedAndroidPerimeterXFlutterPigeonCodec()
     }
-    /** Sets up an instance of `PerimeterxHostApi` to handle messages through the `binaryMessenger`. */
+    /** Sets up an instance of `PerimeterXHostApi` to handle messages through the `binaryMessenger`. */
     @JvmOverloads
-    fun setUp(binaryMessenger: BinaryMessenger, api: PerimeterxHostApi?, messageChannelSuffix: String = "") {
+    fun setUp(binaryMessenger: BinaryMessenger, api: PerimeterXHostApi?, messageChannelSuffix: String = "") {
       val separatedMessageChannelSuffix = if (messageChannelSuffix.isNotEmpty()) ".$messageChannelSuffix" else ""
       run {
-        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.perimeterx_flutter_plugin.PerimeterxHostApi.getPerimeterxHeaders$separatedMessageChannelSuffix", codec)
+        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.perimeterx_flutter_plugin.PerimeterXHostApi.getHeaders$separatedMessageChannelSuffix", codec)
         if (api != null) {
           channel.setMessageHandler { _, reply ->
             val wrapped: List<Any?> = try {
-              listOf(api.getPerimeterxHeaders())
+              listOf(api.getHeaders())
             } catch (exception: Throwable) {
               wrapError(exception)
             }
@@ -83,13 +83,13 @@ interface PerimeterxHostApi {
         }
       }
       run {
-        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.perimeterx_flutter_plugin.PerimeterxHostApi.handlePerimeterxResponse$separatedMessageChannelSuffix", codec)
+        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.perimeterx_flutter_plugin.PerimeterXHostApi.handleResponse$separatedMessageChannelSuffix", codec)
         if (api != null) {
           channel.setMessageHandler { message, reply ->
             val args = message as List<Any?>
             val responseArg = args[0] as String
-            val urlArg = args[1] as String?
-            api.handlePerimeterxResponse(responseArg, urlArg) { result: Result<String> ->
+            val urlArg = args[1] as String
+            api.handleResponse(responseArg, urlArg) { result: Result<String> ->
               val error = result.exceptionOrNull()
               if (error != null) {
                 reply.reply(wrapError(error))
