@@ -8,7 +8,9 @@ import com.perimeterx.mobile_sdk.PerimeterXChallengeResult
 class PerimeterXHostApiImpl : PerimeterXHostApi {
  private val TAG = "PerimeterXFlutterPlugin"
 
- override fun getHeaders(): Map<String, String> = PerimeterX.headersForURLRequest()?.toMap() ?: mapOf()
+ override fun getHeaders(): Map<String, String> {
+  return  PerimeterX.headersForURLRequest()?.toMap() ?: mapOf()
+ }
 
  override fun handleResponse(
   response: String,
@@ -18,7 +20,7 @@ class PerimeterXHostApiImpl : PerimeterXHostApi {
   Log.d(TAG, "handleResponse: url: $url")
   Log.d(TAG, "handleResponse: response: $response")
 
-  val handled = PerimeterX.handleResponse(response, url) {
+  val handled = PerimeterX.handleResponse(response, null) {
     challengeResult: PerimeterXChallengeResult ->
    callback.invoke(Result.success(if(challengeResult == PerimeterXChallengeResult.SOLVED) "solved" else "cancelled"))
    null

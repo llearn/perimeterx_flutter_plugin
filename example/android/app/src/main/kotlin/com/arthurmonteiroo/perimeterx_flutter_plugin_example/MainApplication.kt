@@ -14,7 +14,7 @@ class MainApplication : Application() {
             val policy = PXPolicy()
             policy.storageMethod = PXStorageMethod.DATA_STORE
             policy.urlRequestInterceptionType = PXPolicyUrlRequestInterceptionType.NONE
-            policy.doctorCheckEnabled = true
+            policy.doctorCheckEnabled = false
             PerimeterX.start(this, "PXj9y4Q8Em", null, policy)
         }
         catch (exception: Exception) {
