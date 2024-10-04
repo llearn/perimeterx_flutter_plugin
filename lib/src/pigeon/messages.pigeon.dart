@@ -15,7 +15,6 @@ PlatformException _createConnectionError(String channelName) {
   );
 }
 
-
 class _PigeonCodec extends StandardMessageCodec {
   const _PigeonCodec();
   @override
@@ -41,9 +40,11 @@ class PerimeterXHostApi {
   /// Constructor for [PerimeterXHostApi].  The [binaryMessenger] named argument is
   /// available for dependency injection.  If it is left null, the default
   /// BinaryMessenger will be used which routes to the host platform.
-  PerimeterXHostApi({BinaryMessenger? binaryMessenger, String messageChannelSuffix = ''})
+  PerimeterXHostApi(
+      {BinaryMessenger? binaryMessenger, String messageChannelSuffix = ''})
       : pigeonVar_binaryMessenger = binaryMessenger,
-        pigeonVar_messageChannelSuffix = messageChannelSuffix.isNotEmpty ? '.$messageChannelSuffix' : '';
+        pigeonVar_messageChannelSuffix =
+            messageChannelSuffix.isNotEmpty ? '.$messageChannelSuffix' : '';
   final BinaryMessenger? pigeonVar_binaryMessenger;
 
   static const MessageCodec<Object?> pigeonChannelCodec = _PigeonCodec();
@@ -51,8 +52,10 @@ class PerimeterXHostApi {
   final String pigeonVar_messageChannelSuffix;
 
   Future<Map<String, String>> getHeaders() async {
-    final String pigeonVar_channelName = 'dev.flutter.pigeon.perimeterx_flutter_plugin.PerimeterXHostApi.getHeaders$pigeonVar_messageChannelSuffix';
-    final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
+    final String pigeonVar_channelName =
+        'dev.flutter.pigeon.perimeterx_flutter_plugin.PerimeterXHostApi.getHeaders$pigeonVar_messageChannelSuffix';
+    final BasicMessageChannel<Object?> pigeonVar_channel =
+        BasicMessageChannel<Object?>(
       pigeonVar_channelName,
       pigeonChannelCodec,
       binaryMessenger: pigeonVar_binaryMessenger,
@@ -73,19 +76,23 @@ class PerimeterXHostApi {
         message: 'Host platform returned null value for non-null return value.',
       );
     } else {
-      return (pigeonVar_replyList[0] as Map<Object?, Object?>?)!.cast<String, String>();
+      return (pigeonVar_replyList[0] as Map<Object?, Object?>?)!
+          .cast<String, String>();
     }
   }
 
-  Future<String> handleResponse({required String response, required String url}) async {
-    final String pigeonVar_channelName = 'dev.flutter.pigeon.perimeterx_flutter_plugin.PerimeterXHostApi.handleResponse$pigeonVar_messageChannelSuffix';
-    final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
+  Future<String> handleResponse(
+      {required String response, required String url}) async {
+    final String pigeonVar_channelName =
+        'dev.flutter.pigeon.perimeterx_flutter_plugin.PerimeterXHostApi.handleResponse$pigeonVar_messageChannelSuffix';
+    final BasicMessageChannel<Object?> pigeonVar_channel =
+        BasicMessageChannel<Object?>(
       pigeonVar_channelName,
       pigeonChannelCodec,
       binaryMessenger: pigeonVar_binaryMessenger,
     );
-    final List<Object?>? pigeonVar_replyList =
-        await pigeonVar_channel.send(<Object?>[response, url]) as List<Object?>?;
+    final List<Object?>? pigeonVar_replyList = await pigeonVar_channel
+        .send(<Object?>[response, url]) as List<Object?>?;
     if (pigeonVar_replyList == null) {
       throw _createConnectionError(pigeonVar_channelName);
     } else if (pigeonVar_replyList.length > 1) {

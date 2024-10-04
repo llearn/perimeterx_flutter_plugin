@@ -63,31 +63,21 @@ class PerimeterXFlutter implements IPerimeterXFlutter {
     required String url,
   }) async {
     try {
-      print('PerimeterXFlutter: handleResponse init');
       if (response == null) {
-        print('PerimeterXFlutter: handleResponse is null');
-
         return PerimeterxResult.failed;
       }
       String responseString = '';
 
       if (response is String) {
-        print('PerimeterXFlutter: handleResponse is String');
-
         responseString = response;
       } else if (response is Map<String, dynamic>) {
-        print('PerimeterXFlutter: handleResponse is Map<String, dynamic>');
-
         responseString = jsonEncode(response);
-      } else {
-        print('PerimeterXFlutter: handleResponse is ${response.runtimeType}');
       }
 
       final result = await _hostApi.handleResponse(
         response: responseString,
         url: url,
       );
-      print('PerimeterXFlutter: handleResponse result $result');
 
       return result.toPerimeterxResult;
     } catch (e) {
