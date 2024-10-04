@@ -35,8 +35,6 @@ class _MyAppState extends State<MyApp> {
       final pxHeaders = await _perimeterxFlutterPlugin.getHeaders();
       final url = Uri.https('sample-ios.pxchk.net', '/login');
       final response = await http.get(url, headers: pxHeaders);
-      print(
-          'PERIMETERX_FLUTTER_PLUGIN_EXAMPLE: ${response.statusCode} ${response.body}');
       if (response.statusCode == 403) {
         _challengeResult = await _perimeterxFlutterPlugin.handleResponse(
             response: response.body, url: url.toString());
