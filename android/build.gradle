@@ -1,12 +1,6 @@
 group = "com.arthurmonteiroo.perimeterx_flutter_plugin"
 version = "1.0-SNAPSHOT"
 
-allprojects {
-    repositories {
-        maven { url "https://perimeterx.jfrog.io/artifactory/px-Android-SDK/" }
-    }
-}
-
 buildscript {
     ext.kotlin_version = "1.8.0"
     repositories {
@@ -20,10 +14,12 @@ buildscript {
     }
 }
 
-allprojects {
+rootProject.allprojects {
     repositories {
         google()
         mavenCentral()
+        maven { url "https://perimeterx.jfrog.io/artifactory/px-Android-SDK/" }
+
     }
 }
 
