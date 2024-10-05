@@ -1,6 +1,6 @@
 name: perimeterx_flutter_plugin
 description: A Flutter plugin for PerimeterX integration (Android & iOS). This plugin provides a way to integrate PerimeterX security features into your Flutter app or module.
-version: 1.0.2
+version: 1.0.3
 repository: https://github.com/4rthurmonteiro/perimeterx_flutter_plugin
 issue_tracker: https://github.com/4rthurmonteiro/perimeterx_flutter_plugin/issues
 

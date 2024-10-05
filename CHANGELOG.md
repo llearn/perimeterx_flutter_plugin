@@ -1,4 +1,8 @@
-## 1.0.1
+## 1.0.3
+
+* fix: changelog.
+
+## 1.0.2
 
 * Update android build.gradle.
 
