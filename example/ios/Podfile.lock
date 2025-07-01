@@ -2,10 +2,10 @@ PODS:
   - Flutter (1.0.0)
   - integration_test (0.0.1):
     - Flutter
-  - PerimeterX (3.2.5)
+  - PerimeterX (3.2.7)
   - perimeterx_flutter_plugin (0.0.1):
     - Flutter
-    - PerimeterX (= 3.2.5)
+    - PerimeterX (= 3.2.7)
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
